@@ -1,0 +1,6 @@
+{
+  "name": "morning-briefing",
+  "version": "1.0.0",
+  "description": "How Akansha should assemble a start-of-day briefing when asked.",
+  "tools": ["system.info", "task.list", "notify.show", "web.search"]
+}

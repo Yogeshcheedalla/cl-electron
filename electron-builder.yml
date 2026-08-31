@@ -1,0 +1,66 @@
+appId: com.akansha.assistant
+productName: Akansha
+directories:
+  output: dist
+  buildResources: build
+files:
+  - out/**
+  - package.json
+  - '!**/*.map'
+  # electron-updater is loaded at runtime from the packaged app, so its tree has
+  # to survive packaging. Everything else stays bundled by electron-vite.
+  - node_modules/electron-updater/**
+  - node_modules/builder-util-runtime/**
+  - node_modules/js-yaml/**
+  - node_modules/lazy-val/**
+  - node_modules/lodash.escaperegexp/**
+  - node_modules/lodash.isequal/**
+  - node_modules/tiny-typed-emitter/**
+  - node_modules/semver/**
+  - node_modules/argparse/**
+  - node_modules/sax/**
+  - node_modules/debug/**
+  - node_modules/ms/**
+  - node_modules/fs-extra/**
+  - node_modules/graceful-fs/**
+  - node_modules/jsonfile/**
+  - node_modules/universalify/**
+extraResources:
+  - from: skills
+    to: skills
+  - from: assets
+    to: assets
+# `latest.yml` is generated for the updater, but the URL baked in here is a
+# reserved TLD on purpose: a build that forgets to configure a feed cannot phone
+# home to a real host. The live feed comes from Settings > Updates at runtime.
+publish:
+  - provider: generic
+    url: https://updates.invalid/akansha
+    channel: latest
+win:
+  icon: assets/icon.png
+  target:
+    - target: nsis
+      arch: [x64]
+  artifactName: Akansha Setup ${version}.${ext}
+  # Signing is opt-in and environment-driven: electron-builder signs when
+  # CSC_LINK (a .pfx path or base64 blob) and CSC_KEY_PASSWORD are set, and skips
+  # signing when they are not. No certificate is committed to this repository.
+  signAndEditExecutable: true
+  signtoolOptions:
+    signingHashAlgorithms:
+      - sha256
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: Akansha
+  deleteAppDataOnUninstall: false
+  # The updater replaces an installed build in place, so the installer must be
+  # able to run without prompting for a new directory.
+  differentialPackage: false
+# Unsigned by default: with no CSC_LINK in the environment, Windows SmartScreen
+# warns on first run and `npm run package` says so in its output. Set CSC_LINK
+# and CSC_KEY_PASSWORD to produce a signed release; see DEVELOPMENT.md.
