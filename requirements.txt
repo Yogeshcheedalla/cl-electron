@@ -1,0 +1,29 @@
+# ==============================================================================
+# Akansha AI Assistant - System & Runtime Requirements
+# ==============================================================================
+# Note: This project is built entirely on TypeScript / Node.js & Electron.
+# There are NO Python / pip dependencies required to build or run this project.
+#
+# Primary Package Manager:
+#   npm install
+#
+# Runtime Requirements:
+#   Node.js >= 24.0.0 (required for built-in node:sqlite)
+#   Electron >= 44.0.0
+#
+# Core JavaScript / TypeScript Dependencies (managed via package.json):
+#   - react >= 19.2.8
+#   - react-dom >= 19.2.8
+#   - zustand >= 5.0.15
+#   - zod >= 4.5.1
+#   - react-markdown >= 10.1.0
+#   - remark-gfm >= 4.0.1
+#   - electron-updater >= 6.8.9
+#
+# Dev / Build Dependencies:
+#   - electron-vite >= 5.0.0
+#   - electron-builder >= 26.15.3
+#   - vite >= 7.3.6
+#   - typescript >= 6.0.3
+#   - vitest >= 4.1.11
+# ==============================================================================
